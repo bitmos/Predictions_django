@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>House Price Predictions using one hot encoding</h1>
+    <form method="POST" action="{% url 'estimate_onehot'%}">
+        {% csrf_token %}
+    <div class="mb-4" style="align-self: center; margin: 5rem;">
+        <label for="usernameValidate">Area in sqft: </label>
+        <input type="text" class="form-control is-invalid" id="area"name='area' value="{{data.area}}"required>
+    </div>
+    <div class="mb-2" style="align-self:center; margin: 5rem;">
+        <label class="my-1 me-2" for="state">Select Town:</label>
+        <select style="width: 150px;" class="form-select"  id="location" name="location">
+            {% if data.selected %}
+            <option selected>{{data.selected}}</option>
+            {%else %}
+            {% for loc in data.locations %}
+            <option size="3" value="{{loc}}">{{loc}}</option>
+{% endfor %}
+{%endif%}
+            
+        </select>
+    
+   <br>
+<input  type="submit" value='Submit'/>
+</form><br>
+{% if data.price %}
+          Result : {{ data.price }} Lakhs       
+     {% endif %}</div>
+</body>
+</html>

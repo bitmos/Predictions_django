@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Salary Predictions</h1>
+    <form method="POST" action="{% url 'estimate_salary'%}">
+        {% csrf_token %}
+    <div class="mb-2" style="align-self:center; margin: 5rem;">
+        <label class="my-1 me-2" for="state">Company:</label>
+        <select style="width: 150px;" class="form-select"  id="company" name="company">
+            {% if data.selected_company %}
+            <option selected>{{data.selected_company}}</option>
+            {%else %}
+            {% for loc in data.company %}
+            <option size="3" value="{{loc}}">{{loc}}</option>
+{% endfor %}
+{%endif%}
+            
+        </select>
+    </div>
+    <div class="mb-2" style="align-self:center; margin: 5rem;">
+        <label class="my-1 me-2" for="state">Job:</label>
+        <select style="width: 150px;" class="form-select"  id="job" name="job">
+            {% if data.selected_job %}
+            <option selected>{{data.selected_job}}</option>
+            {%else %}
+            {% for loc in data.job %}
+            <option size="3" value="{{loc}}">{{loc}}</option>
+{% endfor %}
+{%endif%}
+            
+        </select>
+    </div>
+    <div class="mb-2" style="align-self:center; margin: 5rem;">
+        <label class="my-1 me-2" for="state">Degree:</label>
+        <select style="width: 150px;" class="form-select"  id="degree" name="degree">
+            {% if data.selected_degree %}
+            <option selected>{{data.selected_degree}}</option>
+            {%else %}
+            {% for loc in data.degree %}
+            <option size="3" value="{{loc}}">{{loc}}</option>
+{% endfor %}
+{%endif%}
+            
+        </select>
+    </div>
+
+    <div style="align-self: center; margin: 5rem;">
+
+<br>
+<input  type="submit" value='Submit'/>
+<br>
+</form>
+<div style="align-self:center; margin-left: 1rem; margin-top: 2rem;">
+{% if data.text %}
+   {{data.text}}
+     {% endif %}
+    </div>
+</div>
+</body>
+</html>
