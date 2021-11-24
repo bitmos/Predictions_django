@@ -25,10 +25,10 @@ def estimate_iris(request):
     if request.method=="GET":
         return render(request,'iris/houseprice.html',{})
     else:
-        slength=int(request.POST.get('slength'))
-        swidth=int(request.POST.get('swidth'))
-        plength=int(request.POST.get('plength'))
-        pwidth=int(request.POST.get('pwidth'))
+        slength=float(request.POST.get('slength'))
+        swidth=float(request.POST.get('swidth'))
+        plength=float(request.POST.get('plength'))
+        pwidth=float(request.POST.get('pwidth'))
 
         x = np.zeros(4)
         x[0] = slength
